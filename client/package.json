@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^4.0.0",
+    "bn.js": "^5.2.1",
     "ethers": "^6.11.1",
     "next": "14.1.0",
     "react": "^18",

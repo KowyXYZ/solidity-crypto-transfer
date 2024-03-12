@@ -4,6 +4,9 @@ import Image from 'next/image'
 import React, { useContext } from 'react'
 
 import { TransactionContext } from '@context/TransactionContext'
+import Transactions from '@components/Transactions'
+
+import { shortenAddress } from '@utils/shortenAddress'
 
 const Home = () => {
 
@@ -35,22 +38,48 @@ const Home = () => {
 
             <div className=' flex justify-center items-center flex-col'>
               <Image src='/assets/eth.png' width={600} className='object-contain rounded-3xl' height={600}/>
+              <h1 className='mt-2'>Current Account: {shortenAddress(connectedAccount)}</h1>
               <div  className='w-full bg-[#121212] justify-center items-center flex flex-col pt-6 gap-4 border-2 rounded-2xl mt-4 p-4'>
-                <div className='flex items-center justify-center'>
-                 <input handleChange={handleChange} className='p-2 rounded-2xl w-[450px]' type="text" placeholder='Address To' />
+              <div className='flex items-center justify-center'>
+                  <input 
+                    onChange={(e) => handleChange(e, "addressTo")} // Corrected usage of handleChange
+                    className='p-2 rounded-2xl w-[450px]' 
+                    name="addressTo" 
+                    type="text" 
+                    placeholder='Address To' 
+                  />
                 </div>
 
                 <div className='flex items-center justify-center'>
-                 <input handleChange={handleChange} className='p-2 rounded-2xl w-[450px]' type="text" placeholder='Amount (ETH)' />
+                  <input 
+                    onChange={(e) => handleChange(e, "amount")} // Corrected usage of handleChange
+                    className='p-2 rounded-2xl w-[450px]' 
+                    name="amount" 
+                    type="number" 
+                    placeholder='Amount (ETH)' 
+                  />
                 </div>
 
                 <div className='flex items-center justify-center'>
-                 <input handleChange={handleChange} className='p-2 rounded-2xl w-[450px]' type="text" placeholder='Keyword' />
+                  <input 
+                    onChange={(e) => handleChange(e, "keyword")} // Corrected usage of handleChange
+                    className='p-2 rounded-2xl w-[450px]' 
+                    name="keyword"  
+                    type="text" 
+                    placeholder='Keyword' 
+                  />
                 </div>
 
-                <div className='flex items-center justify-center'>
-                 <input handleChange={handleChange} className='p-2 rounded-2xl w-[450px]' type="text" placeholder='Message' />
-                </div>
+                  <div className='flex items-center justify-center'>
+                    <input 
+                      onChange={(e) => handleChange(e, "message")} // Corrected usage of handleChange
+                      className='p-2 rounded-2xl w-[450px]' 
+                      name="message"  
+                      type="text" 
+                      placeholder='Message' 
+                    />
+                  </div>
+
                 <div className='h-[2px] bg-[#fff] w-[80%] rounded-2xl'/>
                 <button onClick={handleSubmit}  className='shadow-[0_4px_14px_0_rgb(255,166,0,39%)] hover:shadow-[0_6px_20px_rgba(255,166,0,23%)] uppercase !font-black text-[18px] hover:bg-[rgba(255,166,0,0.9)] px-8 py-2 bg-[#F7931A] rounded-md text-white  transition duration-200 ease-linear'>
                   Send Now
@@ -59,6 +88,8 @@ const Home = () => {
             </div>
          </div>
         </div>
+
+        <Transactions/>
     </div>
   )
 }
